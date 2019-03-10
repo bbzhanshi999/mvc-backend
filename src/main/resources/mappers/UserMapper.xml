@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mvcbackend.sys.security.UserMapper">
+    <select id="find" resultType="com.example.mvcbackend.sys.security.User">
+        select
+          id,
+          username,
+          password
+        from users
+        <where>
+            <if test="username!=null and username!=''">
+                and username = #{username}
+            </if>
+            <if test="id!=null">
+                and id = #{id}
+            </if>
+        </where>
+    </select>
+
+
+    <insert id="insert">
+        insert into users (username, password) values(
+          #{username},#{password}
+        )
+    </insert>
+</mapper>
